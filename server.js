@@ -344,32 +344,6 @@ app.get("/adminMenu/showReservations",async(req,res)=>{
     const all = await Reservation.find({});
     res.json(all);
 })
-//-----------------------------log-out------------------------------//
-app.get("/logout", (req,res)=>{
-    req.session.destroy((err)=>{
-        if (err) throw err;
-        res.redirect("/");
-    });
-});
-//----------------------------------Blocked Pages------------------//
-app.get("/loginReminder",function(req,res){
-    res.sendFile(__dirname+ "/View/loginReminder.html");
-});
-app.get("/guestReminder",isAuth,function(req,res){
-    res.sendFile(__dirname+ "/View/guestReminder.html");
-});
-app.get("/adminReminder",function(req,res){
-    res.sendFile(__dirname   + "/View/adminReminder.html");
-});
-app.get("/wrongQuantity",function(req,res){
-    res.sendFile(__dirname + "/View/wrongQuantity.html");
-});
-//-----------------------------profile json--------------------------//
-app.get("/profileInfo",profileController.profileInfo);
-//------------------------------change password----------------------//
-app.get("/changePassword",isAuth,profileController.getChangePwPage);
-app.post("/changePassword",profileController.changePw);
-//------------------------flavors ordered----------------------------//
 
 //-----------------------------stats admin's menu----------------//
 app.get("/adminMenu/Stats",adminRoutes.getAdminStats);
